@@ -1,4 +1,12 @@
-<p>home works!</p>
-@for (application of jobApplicationList; track $index) {
+<section>
+    <form>
+        <input type="text" placeholder="filter by company" #filter />
+        <button class="primary" type="button">Filter</button>
+    </form>
+</section>
+
+<section class="results">
+    @for (application of jobApplicationList; track $index) {
     <p>{{application.job_title}}</p>
 }
+</section>
