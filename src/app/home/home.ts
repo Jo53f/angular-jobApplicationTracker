@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { JobApplicationInfo } from '../job-application-info';
+import { LoadApplications } from '../load-applications';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './home.css'
 })
 export class Home {
+  jobApplicationList: JobApplicationInfo[] = [];
+  applicationsLoader: LoadApplications = inject(LoadApplications);
 
+  constructor(){
+    this.jobApplicationList = this.applicationsLoader.load()
+    this.applicationsLoader.save(this.jobApplicationList);
+  }
 }
