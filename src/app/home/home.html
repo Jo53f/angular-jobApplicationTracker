@@ -4,6 +4,8 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="All" #input>
     </mat-form-field>
 
+    <button matButton="elevated" (click)="openDialog()">Add Application</button>
+
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="job_title">
             <th mat-header-cell *matHeaderCellDef>Job Title</th>
