@@ -11,7 +11,7 @@ export class LoadApplications {
         {
           id: 0,
           job_title: "Junior Programmer",
-          date: new Date("13/10/2025"),
+          date: new Date("2025/10/13"),
           company: "exampleCompany",
           job_board: "linkedin",
           status: ApplicationStatus.Applied,
@@ -21,7 +21,7 @@ export class LoadApplications {
         {
           id: 1,
           job_title: "Junior Cloud Engineer",
-          date: new Date("14/10/2025"),
+          date: new Date("2025/10/14"),
           company: "secondCompany",
           job_board: "indeed",
           status: ApplicationStatus.Applied,
@@ -31,7 +31,7 @@ export class LoadApplications {
         {
           id: 2,
           job_title: "Junior Devops",
-          date: new Date("14/10/2025"),
+          date: new Date("2025/10/14"),
           company: "thirdCompany",
           job_board: "linkedin",
           status: ApplicationStatus.Applied,
@@ -46,11 +46,9 @@ export class LoadApplications {
     if (data.length === 0) {
       data = this.jobApplications
     } else {
-      data.forEach(data => ({
-        ...data,
-        date: new Date(data.date)
-      })
-      )
+      data.forEach(item => {
+        item.date = new Date(item.date);
+      });
     }
     return data;
   }

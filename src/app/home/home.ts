@@ -4,27 +4,26 @@ import { LoadApplications } from '../load-applications';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { DatePipe } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-home',
-  imports: [MatTableModule, MatFormFieldModule, MatInputModule],
+  imports: [MatTableModule, MatFormFieldModule, MatInputModule, DatePipe],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
   // jobApplicationList: JobApplicationInfo[] = [];
   applicationsLoader: LoadApplications = inject(LoadApplications);
-  columnToDisplay = ['job_title', 'company']
+  columnToDisplay = ['job_title', 'company', 'date', 'job_board', 'coverLetter', 'detailedApplicationStage']
   dataSource = new MatTableDataSource(
     this.applicationsLoader.load()
   );
 
   constructor(){
-    // this.jobApplicationList = this.applicationsLoader.load();
-    // this.applicationsLoader.save(this.jobApplicationList);
-    // this.dataSource = new MatTableDataSource(this.jobApplicationList);
+    this.applicationsLoader.save(this.dataSource.data);
   }
 
   applyFilter(event: Event){
