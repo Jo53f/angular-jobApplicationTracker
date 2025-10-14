@@ -35,6 +35,11 @@
             <td mat-cell *matCellDef="let application">{{application.detailedApplicationStage}}</td>
         </ng-container>
 
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Detailed Application</th>
+            <td mat-cell *matCellDef="let application">{{application.status}}</td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnToDisplay;"></tr>
 

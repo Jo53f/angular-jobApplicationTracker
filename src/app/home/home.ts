@@ -17,7 +17,7 @@ import { DatePipe } from '@angular/common';
 export class Home {
   // jobApplicationList: JobApplicationInfo[] = [];
   applicationsLoader: LoadApplications = inject(LoadApplications);
-  columnToDisplay = ['job_title', 'company', 'date', 'job_board', 'coverLetter', 'detailedApplicationStage']
+  columnToDisplay = ['job_title', 'company', 'date', 'job_board', 'coverLetter', 'detailedApplicationStage', 'status']
   dataSource = new MatTableDataSource(
     this.applicationsLoader.load()
   );
