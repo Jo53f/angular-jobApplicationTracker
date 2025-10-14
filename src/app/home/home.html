@@ -6,7 +6,27 @@
 </section>
 
 <section class="results">
-    @for (application of jobApplicationList; track $index) {
-    <p>{{application.job_title}}</p>
-}
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="By any field" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="job_title">
+            <th mat-header-cell *matHeaderCellDef>Job Title</th>
+            <td mat-cell *matCellDef="let application">{{application.job_title}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="company">
+            <th mat-header-cell *matHeaderCellDef>Company</th>
+            <td mat-cell *matCellDef="let application">{{application.company}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnToDisplay;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
 </section>
