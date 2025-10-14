@@ -13,7 +13,7 @@ export class Home {
   applicationsLoader: LoadApplications = inject(LoadApplications);
 
   constructor(){
-    this.jobApplicationList = this.applicationsLoader.load()
+    this.jobApplicationList = this.applicationsLoader.load();
     this.applicationsLoader.save(this.jobApplicationList);
   }
 }
