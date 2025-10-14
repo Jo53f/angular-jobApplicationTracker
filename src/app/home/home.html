@@ -1,7 +1,7 @@
 <section class="results">
     <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="By any field" #input>
+        <mat-label>Filter by any field</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="All" #input>
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource">
