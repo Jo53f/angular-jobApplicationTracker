@@ -2,29 +2,60 @@
 <mat-dialog-content>
     <mat-form-field>
         <mat-label>Job Title</mat-label>
-        <input matInput [(ngModel)]="job_title" />
+        <input matInput #job_title />
     </mat-form-field>
+
     <br>
+
     <mat-form-field>
         <mat-label>Company</mat-label>
-        <input matInput [(ngModel)]="company" />
+        <input matInput #company />
     </mat-form-field>
+
     <br>
 
     <mat-form-field subscriptSizing="dynamic">
     <mat-label>Select a date</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="date">
+    <input matInput [matDatepicker]="picker" #date >
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+    <br>
+
+    <mat-form-field>
+        <mat-label>Job Board</mat-label>
+        <input matInput #job_board />
+    </mat-form-field>
+
+    <br>
+    <mat-checkbox #coverLetter>Was a cover letter used?</mat-checkbox>
+
+    <br>
+    <mat-checkbox #detailedApplicationStage>Was it a detailed application form?</mat-checkbox>
+
+    <br>
+    <mat-button-toggle-group [formControl]="currentStatus">
+        <mat-button-toggle value=Applied>Applied</mat-button-toggle>
+        <mat-button-toggle value=Testing>Applied</mat-button-toggle>
+        <mat-button-toggle value=Rejected>Applied</mat-button-toggle>
+        <mat-button-toggle value=Accepted>Applied</mat-button-toggle>
+        <mat-button-toggle value=Response>Applied</mat-button-toggle>
+        <mat-button-toggle value=Interview>Applied</mat-button-toggle>
+    </mat-button-toggle-group>
+
 </mat-dialog-content>
+
 <mat-dialog-actions>
     <button matButton (click)="onNoClick()">Cancel</button>
     <button matButton [mat-dialog-close]="{
-        job_title: job_title(),
-        company: company(),
-        date: date
+        job_title: job_title.value,
+        company: company.value,
+        date: date.value,
+        job_board: job_board.value,
+        coverLetter: coverLetter.checked,
+        detailedApplicationStage: detailedApplicationStage.checked,
+        status: currentStatus.value
     }" cdkFocusInitial>Add</button>
 </mat-dialog-actions>
 

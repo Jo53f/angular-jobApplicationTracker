@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ApplicationDialog } from '../application-dialog/application-dialog';
 import { MatButton } from '@angular/material/button';
+import { JobApplicationInfo } from '../job-application-info';
 
 
 
@@ -44,20 +45,13 @@ export class Home {
     let coverLetter = false;
     let detailedApplicationStage = false;
 
-    const dialogRef = this.dialog.open(ApplicationDialog, {
-      data: {
-        job_title: job_board,
-        company: company,
-        date: date,
-        job_board: job_board,
-        coverLetter: coverLetter,
-        detailedApplicationStage: detailedApplicationStage
-      }
-    });
+    const dialogRef = this.dialog.open(ApplicationDialog);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined){
         console.log({result})
+        this.dataSource.data.push(result);
+        this.applicationsLoader.save(this.dataSource.data);
       }
     })
   }

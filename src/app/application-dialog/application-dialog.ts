@@ -14,26 +14,23 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ApplicationStatus } from '../application-status';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @Component({
   selector: 'app-application-dialog',
-  imports: [MatDialogTitle, MatDialogContent, MatFormFieldModule, MatInputModule, FormsModule, MatDialogActions, MatButtonModule, MatDialogClose, MatDatepickerModule, ReactiveFormsModule, MatDatepickerModule],
+  imports: [MatDialogTitle, MatDialogContent, MatFormFieldModule, MatInputModule, FormsModule, MatDialogActions, MatButtonModule, MatDialogClose, MatDatepickerModule, ReactiveFormsModule, MatDatepickerModule, MatCheckboxModule, MatButtonToggleModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './application-dialog.html',
   styleUrl: './application-dialog.css'
 })
 export class ApplicationDialog {
   readonly dialogRef = inject(MatDialogRef<ApplicationDialog>);
-  readonly data = inject<JobApplicationInfo>(MAT_DIALOG_DATA);
+  readonly data = inject(MAT_DIALOG_DATA);
 
-  readonly job_title = model(this.data.job_title);
-  readonly company = model(this.data.company);
-  readonly date = new FormControl(new Date());
-  readonly job_board = model(this.data.job_board);
-  readonly coverLetter = model(this.data.coverLetter);
-  readonly detailedApplication = model(this.data.detailedApplicationStage);
-  readonly status = model(this.data.status)
+  readonly currentStatus = new FormControl('Applied');
 
   onNoClick():void{
     this.dialogRef.close();
