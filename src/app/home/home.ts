@@ -50,7 +50,9 @@ export class Home {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined){
         console.log({result})
-        this.dataSource.data.push(result);
+        const newData = this.dataSource.data;
+        newData.push(result);
+        this.dataSource.data = newData;
         this.applicationsLoader.save(this.dataSource.data);
       }
     })
