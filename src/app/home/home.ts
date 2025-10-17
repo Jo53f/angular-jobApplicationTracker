@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild, AfterViewInit } from '@angular/core';
 import { LoadApplications } from '../load-applications';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,23 +7,25 @@ import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ApplicationDialog } from '../application-dialog/application-dialog';
 import { MatButton } from '@angular/material/button';
-import { JobApplicationInfo } from '../job-application-info';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
 
 
 @Component({
   selector: 'app-home',
-  imports: [MatTableModule, MatFormFieldModule, MatInputModule, DatePipe, MatButton],
+  imports: [MatTableModule, MatFormFieldModule, MatInputModule, DatePipe, MatButton, MatPaginatorModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements AfterViewInit {
   // jobApplicationList: JobApplicationInfo[] = [];
   applicationsLoader: LoadApplications = inject(LoadApplications);
   columnToDisplay = ['job_title', 'company', 'date', 'job_board', 'coverLetter', 'detailedApplicationStage', 'status']
   dataSource = new MatTableDataSource(
     this.applicationsLoader.load()
   );
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // reference variable to dialog option
   readonly dialog = inject(MatDialog);
@@ -56,5 +58,9 @@ export class Home {
         this.applicationsLoader.save(this.dataSource.data);
       }
     })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 }

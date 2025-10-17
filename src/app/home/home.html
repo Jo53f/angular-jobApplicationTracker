@@ -6,6 +6,7 @@
 
     <button matButton="elevated" (click)="openDialog()">Add Application</button>
 
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of applications"></mat-paginator>
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="job_title">
             <th mat-header-cell *matHeaderCellDef>Job Title</th>
