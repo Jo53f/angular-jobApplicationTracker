@@ -41,13 +41,6 @@ export class Home implements AfterViewInit {
   }
 
   openDialog(): void{
-    let job_title = '';
-    let company = '';
-    let date = new Date();
-    let job_board = '';
-    let coverLetter = false;
-    let detailedApplicationStage = false;
-
     const dialogRef = this.dialog.open(ApplicationDialog);
 
     dialogRef.afterClosed().subscribe(result => {
