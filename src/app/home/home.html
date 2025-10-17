@@ -7,7 +7,7 @@
     <button matButton="elevated" (click)="openDialog()">Add Application</button>
 
     <mat-paginator [pageSizeOptions]="[10, 25, 100, 500]" aria-label="Select page of applications"></mat-paginator>
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="job_title">
             <th mat-header-cell *matHeaderCellDef>Job Title</th>
             <td mat-cell *matCellDef="let application">{{application.job_title}}</td>
@@ -19,7 +19,7 @@
         </ng-container>
 
         <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef disableClear>Date</th>
+            <th mat-header-cell *matHeaderCellDef disableClear mat-sort-header>Date</th>
             <td mat-cell *matCellDef="let application">{{application.date | date:'d, MMM, yyy'}}</td>
         </ng-container>
 
@@ -29,12 +29,12 @@
         </ng-container>
 
         <ng-container matColumnDef="coverLetter">
-            <th mat-header-cell *matHeaderCellDef>Cover Letter Used</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cover Letter Used</th>
             <td mat-cell *matCellDef="let application">{{application.coverLetter}}</td>
         </ng-container>
 
         <ng-container matColumnDef="detailedApplicationStage">
-            <th mat-header-cell *matHeaderCellDef>Detailed Application</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Detailed Application</th>
             <td mat-cell *matCellDef="let application">{{application.detailedApplicationStage}}</td>
         </ng-container>
 

@@ -7,14 +7,15 @@ import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ApplicationDialog } from '../application-dialog/application-dialog';
 import { MatButton } from '@angular/material/button';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { JobApplicationInfo } from '../job-application-info';
 
 
 
 @Component({
   selector: 'app-home',
-  imports: [MatTableModule, MatFormFieldModule, MatInputModule, DatePipe, MatButton, MatPaginatorModule],
+  imports: [MatTableModule, MatFormFieldModule, MatInputModule, DatePipe, MatButton, MatPaginatorModule, MatSortModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -25,6 +26,7 @@ export class Home implements AfterViewInit {
   dataSource = new MatTableDataSource<JobApplicationInfo>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   // reference variable to dialog option
   readonly dialog = inject(MatDialog);
@@ -61,5 +63,6 @@ export class Home implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
