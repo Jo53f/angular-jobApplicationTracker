@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
 
+A functional version of this web app can be visited at the following link: https://delightful-glacier-06a07a803.1.azurestaticapps.net/
+
 ## Development server
 
 To start a local development server, run:
