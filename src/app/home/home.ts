@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApplicationDialog } from '../application-dialog/application-dialog';
 import { MatButton } from '@angular/material/button';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { JobApplicationInfo } from '../job-application-info';
 
 
 
@@ -21,9 +22,7 @@ export class Home implements AfterViewInit {
   // jobApplicationList: JobApplicationInfo[] = [];
   applicationsLoader: LoadApplications = inject(LoadApplications);
   columnToDisplay = ['job_title', 'company', 'date', 'job_board', 'coverLetter', 'detailedApplicationStage', 'status']
-  dataSource = new MatTableDataSource(
-    this.applicationsLoader.load()
-  );
+  dataSource = new MatTableDataSource<JobApplicationInfo>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -31,7 +30,7 @@ export class Home implements AfterViewInit {
   readonly dialog = inject(MatDialog);
 
   constructor(){
-    this.applicationsLoader.save(this.dataSource.data);
+    this.dataSource.data = this.applicationsLoader.load();
   }
 
   applyFilter(event: Event){
